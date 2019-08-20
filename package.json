@@ -1,0 +1,53 @@
+{
+  "name": "react-scaled-content",
+  "version": "0.1.0",
+  "homepage": "https://bluewings.github.io/react-scaled-content/",
+  "private": true,
+  "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.1",
+    "@types/react": "^16.9.1",
+    "@types/react-dom": "^16.8.5",
+    "classnames": "^2.2.6",
+    "emotion": "^10.0.14",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "typescript": "^3.5.3",
+    "use-immer": "^0.3.3"
+  },
+  "devDependencies": {
+    "@types/antd": "^1.0.0",
+    "antd": "^3.21.4",
+    "bootstrap": "^4.3.1",
+    "gh-pages": "^2.1.1",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "react-github-corner": "^2.3.0",
+    "react-scripts": "3.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write '{scripts,src}/**/*.{js,jsx,ts,tsx,scss}'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
