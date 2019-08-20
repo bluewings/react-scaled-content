@@ -1,11 +1,18 @@
 {
   "name": "react-scaled-content",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/react-scaled-content.cjs.js",
   "module": "dist/react-scaled-content.es.js",
   "jsnext:main": "dist/react-scaled-content.es.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://bluewings.github.io/react-scaled-content/",
+  "author": {
+    "name": "Sung Won Cha",
+    "email": "mygenie3@naver.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluewings/react-scaled-content"
+  },
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "classnames": "^2.2.6",
