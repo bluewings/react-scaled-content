@@ -1,5 +1,7 @@
 # react-scaled-content
 
+[![npm badge][npm-badge-png]][package-url]
+
 ## Installation
 
 ```
@@ -23,3 +25,5 @@ function Sample () {
   );
 }
 ```
+[npm-badge-png]: https://nodei.co/npm/react-scaled-content.png
+[package-url]: https://www.npmjs.com/package/react-scaled-content
