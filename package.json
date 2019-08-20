@@ -1,34 +1,51 @@
 {
   "name": "react-scaled-content",
   "version": "0.1.0",
+  "main": "dist/react-scaled-content.cjs.js",
+  "module": "dist/react-scaled-content.es.js",
+  "jsnext:main": "dist/react-scaled-content.es.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://bluewings.github.io/react-scaled-content/",
   "private": true,
   "dependencies": {
     "@types/classnames": "^2.2.9",
+    "classnames": "^2.2.6",
+    "emotion": "^10.0.14",
+    "typescript": "^3.5.3",
+    "use-immer": "^0.3.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "devDependencies": {
+    "@types/antd": "^1.0.0",
     "@types/jest": "^24.0.17",
     "@types/node": "^12.7.1",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
-    "classnames": "^2.2.6",
-    "emotion": "^10.0.14",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "typescript": "^3.5.3",
-    "use-immer": "^0.3.3"
-  },
-  "devDependencies": {
-    "@types/antd": "^1.0.0",
     "antd": "^3.21.4",
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "react-github-corner": "^2.3.0",
-    "react-scripts": "3.1.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-scripts": "3.1.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build_": "react-scripts build",
+    "build": "rollup -c",
+    "prebuild": "rm -rf dist/*",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write '{scripts,src}/**/*.{js,jsx,ts,tsx,scss}'",
@@ -49,5 +66,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "license": "MIT"
 }
