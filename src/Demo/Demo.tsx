@@ -4,7 +4,7 @@ import styles from './Demo.module.scss';
 
 function Demo(props: any) {
   const fit = 'contain'; // cover | contain
-  const overflow = 'hidden'; // = 'hidden';
+  const overflow = 'visible'; // = 'hidden';
   return (
     <div>
       <div className={styles.root} style={{ height: 200 }}>

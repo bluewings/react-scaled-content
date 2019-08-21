@@ -10,6 +10,7 @@ export interface IScaledProps {
   fit?: 'contain' | 'cover' | 'cover-width' | 'cover-height';
   overflow?: 'hidden' | 'visible';
   align?: string;
+  watch?: boolean;
 }
 
 function Scaled({ children, fit = 'contain', overflow, align }: IScaledProps) {
@@ -21,6 +22,7 @@ function Scaled({ children, fit = 'contain', overflow, align }: IScaledProps) {
     dispatch,
   ]: [any, any] = useImmerReducer(reducer, initialState);
 
+  const scaleText = useRef<any>();
   useEffect(() => {
     const handleResize = () => {
       if (inner.current && outer.current && outer.current.parentElement) {
@@ -31,21 +33,35 @@ function Scaled({ children, fit = 'contain', overflow, align }: IScaledProps) {
           contentWidth,
           contentHeight,
         } = getScale(inner.current, outer.current.parentElement, fit);
-        dispatch({
-          type: SET_SCALE,
-          payload: {
-            scale,
-            availWidth,
-            availHeight,
-            contentWidth,
-            contentHeight,
-          },
+
+        const _scaleText = JSON.stringify({
+          scale,
+          availWidth,
+          availHeight,
+          contentWidth,
+          contentHeight,
         });
+
+        if (scaleText.current !== _scaleText) {
+          scaleText.current = _scaleText;
+          dispatch({
+            type: SET_SCALE,
+            payload: {
+              scale,
+              availWidth,
+              availHeight,
+              contentWidth,
+              contentHeight,
+            },
+          });
+        }
       }
     };
-    handleResize();
+
+    const cancelAnimationFrame = animationFrame(handleResize);
     window.addEventListener('resize', handleResize);
     return () => {
+      cancelAnimationFrame();
       window.removeEventListener('resize', handleResize);
     };
   }, [fit, dispatch]);
@@ -75,8 +91,15 @@ function Scaled({ children, fit = 'contain', overflow, align }: IScaledProps) {
       } else {
         paddingLeft = (availWidth - contentWidth * scale) / 2;
       }
+      let size = '';
+      if (fit === 'cover-width') {
+        size = `height: ${contentHeight * scale}px;`;
+      } else if (fit === 'cover-height') {
+        size = `width: ${contentWidth * scale}px;`;
+      }
       return css`
         overflow: ${overflow === 'visible' ? 'visible' : 'hidden'};
+        ${size}
         > div {
           margin-top: ${paddingTop}px;
           margin-left: ${paddingLeft}px;
@@ -95,6 +118,7 @@ function Scaled({ children, fit = 'contain', overflow, align }: IScaledProps) {
     contentHeight,
     aligns,
     overflow,
+    fit,
   ]);
 
   return (
@@ -208,5 +232,22 @@ const getScale = (inner: HTMLElement, outer: HTMLElement, fit: string) => {
     contentHeight,
   };
 };
+
+function animationFrame(callback: Function, endInSec = 500) {
+  let id: number;
+  const now = new Date().valueOf();
+  function tick() {
+    if (callback) {
+      callback();
+    }
+    if (new Date().valueOf() - now < endInSec) {
+      id = requestAnimationFrame(tick);
+    }
+  }
+  tick();
+  return () => {
+    cancelAnimationFrame(id);
+  };
+}
 
 export default Scaled;
