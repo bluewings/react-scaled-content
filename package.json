@@ -38,7 +38,7 @@
     "react-github-corner": "^2.3.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-scripts": "3.1.0",
+    "react-scripts": "5.0.1",
     "rollup": "^1.19.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.2",
